@@ -14,7 +14,6 @@ import java.net.URL;
 public class AndroidSetup {
     protected AndroidDriver driver;
 
-
     protected void prepareAndroidForAppium() throws MalformedURLException {
         File appDir = new File("d:\\QA_Hillel\\LR25_mobile\\myAppiumProject\\apps\\");
         //File appDir = new File("/myAppiumProject/apps");
@@ -22,16 +21,13 @@ public class AndroidSetup {
         File app = new File(appDir, "linkedin-4-0-52.apk");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("device","Android");
-
-
-
-
         capabilities.setCapability("deviceName","Android");
-
-
-
-
         capabilities.setCapability("app", app.getAbsolutePath());
         driver =  new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
+
+    public AndroidDriver getDriver() {
+        return driver;
+    }
+
 }
