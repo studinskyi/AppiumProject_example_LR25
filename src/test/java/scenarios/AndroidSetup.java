@@ -18,8 +18,9 @@ public class AndroidSetup {
         File appDir = new File("d:\\QA_Hillel\\LR25_mobile\\myAppiumProject\\apps\\");
         //File appDir = new File("/myAppiumProject/apps");
         //File appDir = new File("/SeleniumTests/AppiumLR/apps");
-        File app = new File(appDir, "linkedin-4-0-52.apk");
+        File app = new File(appDir, "linkedin-4-0-95.apk");
         DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("device","Android");
         capabilities.setCapability("deviceName","Android");
         capabilities.setCapability("app", app.getAbsolutePath());

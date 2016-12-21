@@ -11,13 +11,16 @@ import org.testng.annotations.Test;
 
 
 public class AppiumTest extends AndroidSetup {
+    private final static String strLoginUser = "DmitrStud_TestMob@mail.ru";
+    private final static String strPasswordUser = "TestMob_2016_DmitrStud";
+
     @BeforeClass
     public void setUp() throws Exception {
         prepareAndroidForAppium();
     }
 
 
-    //    @AfterClass
+    @AfterClass
     public void tearDown() throws Exception {
         driver.quit();
     }
@@ -32,38 +35,51 @@ public class AppiumTest extends AndroidSetup {
         By userPassword = By.id(app_package_name + "growth_login_join_fragment_password");
         By showButton = By.id(app_package_name + "growth_login_join_show_hide_password");
         By signInButton = By.id(app_package_name + "growth_login_fragment_sign_in");
+        By homeAppLauncher = By.id(app_package_name + "home_activity_app_launcher");
 
-        // 1- вариант входа в приложение
+        // 1 - вариант входа в приложение
         waitForVisibilityOf(firstSignIn);
 
         driver.findElement(firstSignIn).click();
         driver.findElement(userEmail).clear();
-        driver.findElement(userEmail).sendKeys("DmitrStud_TestMob@mail.ru");
-        driver.findElement(userPassword).sendKeys("TestMob_2016_DmitrStud");
+        driver.findElement(userEmail).sendKeys(strLoginUser);
+        driver.findElement(userPassword).sendKeys(strPasswordUser);
         driver.findElement(showButton).click();
 
+        String typedUser = driver.findElement(userEmail).getText();
+        Assert.assertEquals(typedUser, strLoginUser);
+
         String typedPass = driver.findElement(userPassword).getText();
-        Assert.assertEquals(typedPass, "TestMob_2016_DmitrStud");
+        Assert.assertEquals(typedPass, strPasswordUser);
 
         driver.findElement(signInButton).click();
 
+        // ожидание открытия рабочего окна аккаунта linkedin
+        waitForVisibilityOf(homeAppLauncher);
+        Assert.assertNotNull(homeAppLauncher);
+
 
 //        // 2 вариант входа в приложение
+//        //waitForVisibilityOf(firstSignIn);
 //        driver.pressKeyCode(AndroidKeyCode.HOME);
 //        driver.findElementByAndroidUIAutomator("new UiSelector().description(\"Apps\")").click();
 //        driver.findElementByAndroidUIAutomator("new UiSelector().text(\"LinkedIn\")").click();
 //        driver.findElementByAndroidUIAutomator("new UiSelector().text(\"Sign in\")").click();
-//        driver.findElement(firstSignIn).click();
-//        driver.findElement(userEmail).clear();
-//        driver.findElement(userEmail).sendKeys("DmitrStud_TestMob@mail.ru");
-//        driver.findElement(userPassword).sendKeys("TestMob_2016_DmitrStud");
+//        driver.findElement(userEmail).sendKeys(strLoginUser);
+//        driver.findElement(userPassword).sendKeys(strPasswordUser);
 //        driver.findElement(showButton).click();
 //
-//        typedPass = driver.findElement(userPassword).getText();
-//        Assert.assertEquals(typedPass, "TestMob_2016_DmitrStud");
+//        String typedUser = driver.findElement(userEmail).getText();
+//        Assert.assertEquals(typedUser, strLoginUser);
+//
+//        String typedPass = driver.findElement(userPassword).getText();
+//        Assert.assertEquals(typedPass, strPasswordUser);
 //
 //        driver.findElementByAndroidUIAutomator("new UiSelector().text(\"Sign in\")").click();
-
+//
+//        // ожидание открытия рабочего окна аккаунта linkedin
+//        waitForVisibilityOf(homeAppLauncher);
+//        Assert.assertNotNull(homeAppLauncher);
 
 
     }
