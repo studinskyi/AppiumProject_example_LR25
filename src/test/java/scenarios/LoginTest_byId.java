@@ -9,7 +9,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class LoginTest_byId extends AndroidSetup{
+public class LoginTest_byId extends AndroidSetup {
     private final static String strLoginUser = "DmitrStud_TestMob@mail.ru";
     private final static String strPasswordUser = "TestMob_2016_DmitrStud";
 
@@ -27,7 +27,7 @@ public class LoginTest_byId extends AndroidSetup{
     }
 
     @Test
-    public void showTest() {
+    public void loginTest() {
         String app_package_name = "com.linkedin.android:id/";
         By firstSignIn = By.id(app_package_name + "growth_prereg_fragment_sign_in_button");
         By userEmail = By.id(app_package_name + "growth_login_join_fragment_email_address");
@@ -57,22 +57,52 @@ public class LoginTest_byId extends AndroidSetup{
         waitForVisibilityOf(homeAppLauncher);
         Assert.assertNotNull(homeAppLauncher);
 
-//        // 2 вариант входа в приложение
-//        driver.pressKeyCode(AndroidKeyCode.HOME);
-//        driver.findElementByAndroidUIAutomator("new UiSelector().description(\"Apps\")").click();
-//        driver.findElementByAndroidUIAutomator("new UiSelector().text(\"LinkedIn\")").click();
-//        driver.findElementByAndroidUIAutomator("new UiSelector().text(\"Sign in\")").click();
-//        driver.findElement(firstSignIn).click();
-//        driver.findElement(userEmail).clear();
-//        driver.findElement(userEmail).sendKeys(strLoginUser);
-//        driver.findElement(userPassword).sendKeys(strPasswordUser);
-//        driver.findElement(showButton).click();
-//
-//        typedPass = driver.findElement(userPassword).getText();
-//        Assert.assertEquals(typedPass, strPasswordUser);
-//
-//        driver.findElementByAndroidUIAutomator("new UiSelector().text(\"Sign in\")").click();
     }
+
+    //    @Test (dependsOnMethods = "loginTest")
+    //    public void sendMessageTest() {
+    //
+    //        String app_package_name = "com.linkedin.android:id/";
+    //        By myContactsButton = By.name("My Network, Tab 2 of 5");
+    //        By connection_home_button = By.id(app_package_name + "relationships_connection_home_button");
+    //        By contact_ArthurPilyuk = By.name("Arthur Pilyuk");
+    //        By message_primary_button = By.id(app_package_name + "profile_view_top_card_primary_button");
+    //        By message_text_input_container = By.id(app_package_name + "msglib_keyboard_text_input_container");
+    //        By message_send_button = By.id(app_package_name + "msglib_keyboard_send_button");
+    //        String textMessage = "Message by Dmitryi Studinskyi for testing mobile applications linkedIn";
+    //        By image_message_send = By.name(textMessage);
+    //
+    //
+    //        // вход в список контактов аккаунта linkedin
+    //        waitForVisibilityOf(myContactsButton);
+    //        Assert.assertNotNull(myContactsButton);
+    //        driver.findElement(myContactsButton).click();
+    //
+    //        // далее вход в список уже подтвержденных связей с людьми Connections
+    //        waitForVisibilityOf(connection_home_button);
+    //        Assert.assertNotNull(connection_home_button);
+    //        driver.findElement(connection_home_button).click();
+    //
+    //        // вход в аккаунт Arthur Pilyuk
+    //        waitForVisibilityOf(contact_ArthurPilyuk);
+    //        Assert.assertNotNull(contact_ArthurPilyuk);
+    //        driver.findElement(contact_ArthurPilyuk).click();
+    //
+    //        // подготовка и отсылка сообщения
+    //        waitForVisibilityOf(contact_ArthurPilyuk);
+    //        Assert.assertNotNull(contact_ArthurPilyuk);
+    //        waitForVisibilityOf(message_primary_button);
+    //        Assert.assertNotNull(message_primary_button);
+    //        driver.findElement(message_primary_button).click();
+    //        waitForVisibilityOf(message_text_input_container);
+    //        Assert.assertNotNull(message_text_input_container);
+    //        driver.findElement(message_text_input_container).click();
+    //        driver.findElement(message_text_input_container).clear();
+    //        driver.findElement(message_text_input_container).sendKeys(textMessage);
+    //        driver.findElement(message_send_button).click();
+    //        waitForVisibilityOf(image_message_send);
+    //        Assert.assertNotNull(image_message_send);
+    //    }
 
     protected void waitForVisibilityOf(By locator) {
 

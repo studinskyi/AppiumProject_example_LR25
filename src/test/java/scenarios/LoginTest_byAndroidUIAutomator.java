@@ -28,7 +28,7 @@ public class LoginTest_byAndroidUIAutomator extends AndroidSetup {
     }
 
     @Test
-    public void showTest() {
+    public void loginTest() {
         String app_package_name = "com.linkedin.android:id/";
         By firstSignIn = By.id(app_package_name + "growth_prereg_fragment_sign_in_button");
         By userEmail = By.id(app_package_name + "growth_login_join_fragment_email_address");
